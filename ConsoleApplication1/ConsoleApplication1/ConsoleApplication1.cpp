@@ -13,18 +13,36 @@ void displayMenu() {
 	cout << "Выберите операцию: ";
 }
 
+double getNumber(const string& prompt) {
+	double number;
+	while (true) {
+		cout << prompt;
+		cin >> number;
+
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Ошибка! Введите число: ";
+		}
+		else {
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			break;
+		}
+	}
+	return number;
+}
 
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 	int choice;
+	double num1, num2, result;
 
 	while (true) {
 		displayMenu();
 		cin >> choice;
 
 		if (std::cin.fail()) {
-			std::cout << "Ошибка! Введите только числа.\n";
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
@@ -33,5 +51,27 @@ int main()
 			cout << "До свидания!" << endl;
 			break;
 		}
+		switch (choice) {
+		case 1: // Сложение
+			num1 = getNumber("Введите первое число: ");
+			num2 = getNumber("Введите второе число: ");
+			result = num1 + num2;
+			cout << "Результат: " << num1 << " + " << num2 << " = " << result << endl;
+			break;
+
+		case 2: // Вычитание
+			num1 = getNumber("Введите первое число: ");
+			num2 = getNumber("Введите второе число: ");
+			result = num1 - num2;
+			cout << "Результат: " << num1 << " - " << num2 << " = " << result << endl;
+			break;
+
+		default:
+			cout << "Неверный выбор! Пожалуйста, выберите операцию от 1 до 7." << endl;
+			break;
+		}
+		cout << "\nНажмите Enter для продолжения...";
+		cin.get();
 	}
+	return 0;
 }

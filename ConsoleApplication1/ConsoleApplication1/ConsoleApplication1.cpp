@@ -41,13 +41,14 @@ int main()
 	while (true) {
 		displayMenu();
 		cin >> choice;
+		cout << "\n";
 
 		if (std::cin.fail()) {
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
 
-		if (choice == 7) {
+		if (choice == 5) {
 			cout << "До свидания!" << endl;
 			break;
 		}
@@ -66,8 +67,27 @@ int main()
 			cout << "Результат: " << num1 << " - " << num2 << " = " << result << endl;
 			break;
 
+		case 3: // Умножение
+			num1 = getNumber("Введите первое число: ");
+			num2 = getNumber("Введите второе число: ");
+			result = num1 * num2;
+			cout << "Результат: " << num1 << " * " << num2 << " = " << result << endl;
+			break;
+
+		case 4: // Деление
+			num1 = getNumber("Введите делимое: ");
+			num2 = getNumber("Введите делитель: ");
+			if (num2 == 0) {
+				cout << "Ошибка! Деление на ноль невозможно." << endl;
+			}
+			else {
+				result = num1 / num2;
+				cout << "Результат: " << num1 << " / " << num2 << " = " << result << endl;
+			}
+			break;
+
 		default:
-			cout << "Неверный выбор! Пожалуйста, выберите операцию от 1 до 7." << endl;
+			cout << "Неверный выбор! Пожалуйста, выберите операцию от 1 до 5." << endl;
 			break;
 		}
 		cout << "\nНажмите Enter для продолжения...";
